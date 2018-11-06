@@ -1,10 +1,6 @@
-<!doctype html>
-<html lang="fr">
-<body>
-<div>
-    <h1> Projet Template  SIO SLAM </h1>
-</div>
-</body>
-</html>
-
-
+@extends('layouts.master')
+@section('content')
+    <div>
+        <h1 class="bvn"> IT WORKS</h1>
+    </div>
+@endsection
