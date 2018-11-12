@@ -15,7 +15,7 @@
     <div class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Acceuil <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="">Accueil <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Acheter</a>
@@ -24,7 +24,7 @@
                 <a class="nav-link" href="#">Vendre</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Boutique</a>
+                <a class="nav-link" href="{{ url('/listerBoutique') }}">Boutique</a>
             </li>
         </ul>
     </div>
