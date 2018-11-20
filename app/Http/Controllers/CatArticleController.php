@@ -17,7 +17,7 @@ class CatArticleController extends Controller
         try{
             $uneCatArt = new CatArticle();
             $mesCatArt = $uneCatArt->getListeCategories();
-            return view('/', compact('mesCatArt'));
+            return view('home', compact('mesCatArt'));
 
         } catch (MonException $e) {
             $erreur = $e->getMessage();

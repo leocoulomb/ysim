@@ -1,9 +1,11 @@
 <?php
 
+//Accueil
+Route::get('/', 'CatArticleController@listeCategories');
+Route::get('/home', 'CatArticleController@listeCategories');
 
-Route::get('/', function () {
-    return view('home');
-});
+//Accès boutique spécifique
+Route::get('/boutique/{id}', 'BoutiqueController@modification');
 
-/**Lister les boutiques*/
+//Lister boutiques
 Route::get('listerBoutique', 'BoutiqueController@listerBoutique');

@@ -17,16 +17,21 @@
                 <th>Code Postal</th>
                 <th>Email</th>
                 <th>Téléphone</th>
+                <th>Accès</th>
             </tr>
             </thead>
             @foreach($mesBoutiques as $uneBout)
             <tr>
-                <td> {{ $uneBout->rseBout }}</td>
-                <td> {{ $uneBout->adresseBout }}</td>
-                <td> {{ $uneBout->villeBout }}</td>
-                <td> {{ $uneBout->cpBout }}</td>
-                <td> {{ $uneBout->emailBout }}</td>
-                <td> {{ $uneBout->telBout }}</td>
+                <td> {{ $uneBout->RSEBOUT }}</td>
+                <td> {{ $uneBout->ADRESSEBOUT }}</td>
+                <td> {{ $uneBout->VILLEBOUT }}</td>
+                <td> {{ $uneBout->CPBOUT }}</td>
+                <td> {{ $uneBout->EMAILBOUT }}</td>
+                <td> {{ $uneBout->TELBOUT }}</td>
+                <td> <a href="{{ url('/boutique')}}/{{$unSejour->NUMBOUT}}">
+                        <span class="glyphicon glyphicon-pencil" data-toggle="tooltip" data-placement="top" title="Acceder"></span>
+                    </a>
+                </td>
             </tr>
             @endforeach
             <br> <br>

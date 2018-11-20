@@ -21,13 +21,13 @@ class Boutique extends Model {
     private $telBout;
 
     protected $fillable = [
-        'numBout',
-        'rseBout',
-        'adresseBout',
-        'villeBout',
-        'cpBout',
-        'emailBout',
-        'telBout'
+        'NUMBOUT',
+        'RSEBOUT',
+        'ADRESSEBOUT',
+        'VILLEBOUT',
+        'CPBOUT',
+        'EMAILBOUT',
+        'TELBOUT'
     ];
 
     public function __construct()
@@ -71,6 +71,18 @@ class Boutique extends Model {
                 ->Select()
                 ->get();
                 return $mesBoutiques;
+        } catch (\Illuminate\Database\QueryException $e) {
+            throw new MonException($e->getMessage(), 5);
+        }
+    }
+
+    public function getById($id) {
+        try {
+            $mesBoutiques = DB::table('BOUTIQUE')
+                ->Select()
+                ->where('NUMBOUT',$id)
+                ->first();
+            return $mesBoutiques;
         } catch (\Illuminate\Database\QueryException $e) {
             throw new MonException($e->getMessage(), 5);
         }

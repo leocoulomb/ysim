@@ -23,14 +23,29 @@ class BoutiqueController extends Controller {
             $mesBoutiques = $uneBoutique->getListeBoutiques();
         } catch (MonException $e) {
             $monErreur = $e->getMessage();
-            return view('vues/error', compact('monErreur'));
+            return view('error', compact('monErreur'));
         } catch (Exception $e) {
             $monErreur = $e->getMessage();
-            return view('vues/error', compact('monErreur'));
+            return view('error', compact('monErreur'));
         }
 
-        return view('vues/listerBoutique', compact('mesBoutiques'));
+        return view('listerBoutique', compact('mesBoutiques'));
 
+    }
+
+    public function accesBoutique($id)
+    {
+        $uneBoutique = new Boutique();
+        try {
+            $mesBoutiques = $uneBoutique->getById($id);
+        } catch (MonException $e) {
+            $monErreur = $e->getMessage();
+            return view('error', compact('monErreur'));
+        } catch (Exception $e) {
+            $monErreur = $e->getMessage();
+            return view('error', compact('monErreur'));
+        }
+        return view('boutique', compact('mesBoutiques'));
     }
 
 }
