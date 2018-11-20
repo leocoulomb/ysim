@@ -4,3 +4,4 @@
         <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
         <p> Voici l'erreur : {{ $monErreur }}</p>
     </div>
+@endsection
