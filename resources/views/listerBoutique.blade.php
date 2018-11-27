@@ -22,13 +22,13 @@
             </thead>
             @foreach($mesBoutiques as $uneBout)
             <tr>
-                <td> {{ $uneBout->RSEBOUT }}</td>
+                <td> {{ $uneBout->RESBOUT }}</td>
                 <td> {{ $uneBout->ADRESSEBOUT }}</td>
                 <td> {{ $uneBout->VILLEBOUT }}</td>
                 <td> {{ $uneBout->CPBOUT }}</td>
                 <td> {{ $uneBout->EMAILBOUT }}</td>
                 <td> {{ $uneBout->TELBOUT }}</td>
-                <td> <a href="{{ url('/boutique')}}/{{$unSejour->NUMBOUT}}">
+                <td> <a href="{{ url('/boutique')}}/{{$uneBout->NUMBOUT}}">
                         <span class="glyphicon glyphicon-pencil" data-toggle="tooltip" data-placement="top" title="Acceder"></span>
                     </a>
                 </td>

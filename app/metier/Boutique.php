@@ -10,7 +10,7 @@ class Boutique extends Model {
     //On déclare la table Boutique
 
     protected $table = 'boutique';
-    protected $primaryKey = 'numBout';
+    protected $primaryKey = 'NUMBOUT';
     public $timestamps = false;
 
     private $rseBout;
@@ -22,7 +22,7 @@ class Boutique extends Model {
 
     protected $fillable = [
         'NUMBOUT',
-        'RSEBOUT',
+        'RESBOUT',
         'ADRESSEBOUT',
         'VILLEBOUT',
         'CPBOUT',
