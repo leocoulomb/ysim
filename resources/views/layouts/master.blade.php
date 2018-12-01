@@ -1,4 +1,3 @@
-
     <!DOCTYPE html>
     <html lang="fr">
 
@@ -10,10 +9,12 @@
 
         <title>Ysim</title>
 
-        <!-- Bootstrap core CSS -->
+        <!-- Core CSS -->
         {!! Html::style('assets/css/bootstrap.css') !!}
         {!! Html::style('assets/css/bootstrap-theme.css') !!}
         {!! Html::style('assets/css/bootstrap_flaty.min.css') !!}
+        {!! Html::style('assets/css/main.css') !!}
+
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
         @yield('css')
 
@@ -37,6 +38,9 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link menu-proj" href="{{url('/listerBoutique')}}"><i class="fas fa-shopping-cart"></i>Boutiques</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link menu-proj" href="{{url('/listerArticle')}}"><i class="fas fa-shopping-cart"></i>Articles</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link menu-proj" href="{{url('/listerPanier')}}"><i class="fas fa-shopping-basket"></i>Panier</a>

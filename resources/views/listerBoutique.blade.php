@@ -1,13 +1,7 @@
 @extends ('layouts.master')
 @section('content')
-
-<div>
-    <br> <br>
-    <br> <br>
-    <div class="container">
-        <div class="blanc">
-            <h1>Liste des Boutiques</h1>
-        </div>
+<div class="row">
+    <h1>{{$title}}</h1>
         <table class="table table-bordered table-striped">
             <thead>
             <tr>
@@ -36,6 +30,5 @@
             @endforeach
             <br> <br>
         </table>
-    </div>
 </div>
     @endsection

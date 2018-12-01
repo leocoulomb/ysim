@@ -1,7 +1,4 @@
 @extends('layouts.master')
-@section('css')
-    {!! Html::style('assets/css/home.css') !!}
-@endsection
 @section('content')
     <div class="row">
 
@@ -9,7 +6,7 @@
             <h1 class="my-4">Catégories </h1>
             <div class="list-group">
                 @foreach($mesCatArt as $uneCatArt)
-                <a href="{{$uneCatArt->CODECAT_ART}}" class="list-group-item">{{$uneCatArt->LIBELLECAT_ART}}</a>
+                    <a href="{{$uneCatArt->CODECAT_ART}}" class="list-group-item">{{$uneCatArt->LIBELLECAT_ART}}</a>
                 @endforeach
             </div>
 

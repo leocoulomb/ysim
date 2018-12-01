@@ -4,7 +4,11 @@
 Route::get('/', 'CatArticleController@listeCategories');
 Route::get('/home', 'CatArticleController@listeCategories');
 
-Route::get('/listerArticle', 'ArticleController@listerArticle');
+//Liste les articles
+Route::get('/listerArticle', 'ArticleAndCatController@listerArticleAndCat');
+
+//Liste les articles d'un catégories
+Route::get('/listerArticle/{CODE_CATART]', 'ArticleController@listerArticle');
 
 //Accès boutique spécifique
 Route::get('/boutique/{id}', 'BoutiqueController@accesBoutique');

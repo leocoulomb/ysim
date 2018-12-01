@@ -17,10 +17,11 @@ class BoutiqueController extends Controller {
 
     public function listerBoutique()
     {
-        $uneBoutique = new Boutique();
 
         try{
+            $uneBoutique = new Boutique();
             $mesBoutiques = $uneBoutique->getListeBoutiques();
+            $title = 'Liste des boutiques';
         } catch (MonException $e) {
             $monErreur = $e->getMessage();
             return view('error', compact('monErreur'));
@@ -29,7 +30,7 @@ class BoutiqueController extends Controller {
             return view('error', compact('monErreur'));
         }
 
-        return view('listerBoutique', compact('mesBoutiques'));
+        return view('listerBoutique', compact('mesBoutiques','title'));
 
     }
 

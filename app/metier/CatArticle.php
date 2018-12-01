@@ -13,7 +13,6 @@ use DB;
 
 class CatArticle extends Model
 {
-    //On déclare la table Boutique
 
     protected $table = 'CAT_ARTICLE';
     protected $primaryKey = 'CODECAT_ART';

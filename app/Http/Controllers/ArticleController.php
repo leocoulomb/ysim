@@ -9,18 +9,17 @@
 namespace App\Http\Controllers;
 
 use App\metier\Article;
-use App\metier\MonException;
-use Request;
-use Illuminate\Support\Facades\Session;
-use App\metier\Boutique;
 use Exception;
+use App\metier\MonException;
 
 class ArticleController extends Controller
 {
     public function listerArticle(){
         try{
             $mesArticles = new Article();
-            $mesArticles->getListeArticles();
+            $mesArticles = $mesArticles->getListeArticles();
+            return view('listerArticle', compact('mesArticles'));
+
         } catch (MonException $e) {
             $erreur = $e->getMessage();
             return view('Error', compact('erreur'));
