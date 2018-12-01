@@ -45,4 +45,18 @@ class ArticleAndCatController extends Controller
             return view('Error', compact('erreur'));
         }
     }
+    public function listerArticleByBout($NUMBOUT){
+        try {
+            $unArticleAndCat = new ArticleAndCat();
+            $mesArticlesAndCatByBout = $unArticleAndCat->getArticleAndCatByBout($NUMBOUT);
+            $title = 'Liste des articles de la boutique ' .$mesArticlesAndCatByBout[0]->RESBOUT;
+            return view('listerArticle', compact('mesArticlesAndCatByBout','title'));
+        } catch (MonException $e) {
+            $erreur = $e->getMessage();
+            return view('Error', compact('erreur'));
+        } catch (Exception $ex) {
+            $erreur = $ex->getMessage();
+            return view('Error', compact('erreur'));
+        }
+    }
 }

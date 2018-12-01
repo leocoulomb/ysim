@@ -1,7 +1,9 @@
 @extends ('layouts.master')
 @section('content')
+    <center><h1 class="title">{{$title}}</h1></center>
+    <hr/>
 <div class="row">
-    <h1>{{$title}}</h1>
+
         <table class="table table-bordered table-striped">
             <thead>
             <tr>
@@ -11,7 +13,7 @@
                 <th>Code Postal</th>
                 <th>Email</th>
                 <th>Téléphone</th>
-                <th>Accès</th>
+                <th>Voir produits</th>
             </tr>
             </thead>
             @foreach($mesBoutiques as $uneBout)
@@ -22,7 +24,7 @@
                 <td> {{ $uneBout->CPBOUT }}</td>
                 <td> {{ $uneBout->EMAILBOUT }}</td>
                 <td> {{ $uneBout->TELBOUT }}</td>
-                <td> <a href="{{ url('/boutique')}}/{{$uneBout->NUMBOUT}}">
+                <td> <a href="{{ url('/listerArticle/boutique')}}/{{$uneBout->NUMBOUT}}">
                         <span class="glyphicon glyphicon-pencil" data-toggle="tooltip" data-placement="top" title="Acceder"></span>
                     </a>
                 </td>

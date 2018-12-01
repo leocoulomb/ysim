@@ -29,8 +29,9 @@ class ArticleAndCat extends Model
         'DESCCAT_ART'
     ];
 
-    public function getAllArticleAndCat() {
-        try{
+    public function getAllArticleAndCat()
+    {
+        try {
             $mesArticlesAndCat = DB::table('ARTICLEANDCAT')
                 ->get();
             return $mesArticlesAndCat;
@@ -39,13 +40,29 @@ class ArticleAndCat extends Model
         }
     }
 
-    public function getArticleAndCatByCodeCat($CoceCat) {
-        try{
+    public function getArticleAndCatByCodeCat($CoceCat)
+    {
+        try {
             $mesArticlesAndCatByCode = DB::table('ARTICLEANDCAT')
                 ->Select()
-                ->where('CODECAT_ART',$CoceCat)
+                ->where('CODECAT_ART', $CoceCat)
                 ->get();
             return $mesArticlesAndCatByCode;
+        } catch (QueryException $e) {
+            $e->getMessage();
+        }
+    }
+
+    public function getArticleAndCatByBout($id)
+    {
+        try {
+            $mesArticlesAndCatByBout = DB::table('ARTICLEANDCAT')
+                ->Select()
+                ->join('propose', 'propose.NUMART','=', 'ARTICLEANDCAT.NUMART')
+                ->join('boutique','boutique.NUMBOUT','=','propose.NUMBOUT')
+                ->where('propose.NUMBOUT','=' ,$id)
+                ->get();
+            return $mesArticlesAndCatByBout;
         } catch (QueryException $e) {
             $e->getMessage();
         }
