@@ -64,6 +64,7 @@
     </div>
     <!-- /.container -->
 </footer>
+@yield('script')
 </body>
 </html>
 

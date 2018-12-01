@@ -8,7 +8,7 @@ Route::get('/home', 'CatArticleController@listeCategories');
 Route::get('/listerArticle', 'ArticleAndCatController@listerArticleAndCat');
 
 //Liste les articles d'un catégories
-Route::get('/listerArticle/{CODE_CATART]', 'ArticleController@listerArticle');
+Route::get('/listerArticle/{CODECAT_ART}', 'ArticleAndCatController@listerArticleByCat');
 
 //Accès boutique spécifique
 Route::get('/boutique/{id}', 'BoutiqueController@accesBoutique');

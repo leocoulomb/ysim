@@ -38,4 +38,16 @@ class ArticleAndCat extends Model
             $e->getMessage();
         }
     }
+
+    public function getArticleAndCatByCodeCat($CoceCat) {
+        try{
+            $mesArticlesAndCatByCode = DB::table('ARTICLEANDCAT')
+                ->Select()
+                ->where('CODECAT_ART',$CoceCat)
+                ->get();
+            return $mesArticlesAndCatByCode;
+        } catch (QueryException $e) {
+            $e->getMessage();
+        }
+    }
 }

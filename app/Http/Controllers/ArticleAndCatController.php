@@ -20,7 +20,23 @@ class ArticleAndCatController extends Controller
         try{
             $mesArticlesAndCat = new ArticleAndCat();
             $mesArticlesAndCat = $mesArticlesAndCat->getAllArticleAndCat();
-            return view('listerArticle', compact('mesArticlesAndCat'));
+            $title = 'Liste de tous les articles';
+            return view('listerArticle', compact('mesArticlesAndCat','title'));
+        } catch (MonException $e) {
+            $erreur = $e->getMessage();
+            return view('Error', compact('erreur'));
+        } catch (Exception $ex) {
+            $erreur = $ex->getMessage();
+            return view('Error', compact('erreur'));
+        }
+    }
+    public function listerArticleByCat($CODECAT_ART)
+    {
+        try {
+            $unArticleAndCat = new ArticleAndCat();
+            $mesArticlesAndCatByCode = $unArticleAndCat->getArticleAndCatByCodeCat($CODECAT_ART);
+            $title = 'Liste des articles de la catégiorie ' . $mesArticlesAndCatByCode[0]->LIBELLECAT_ART;
+            return view('listerArticle', compact('mesArticlesAndCatByCode','title'));
         } catch (MonException $e) {
             $erreur = $e->getMessage();
             return view('Error', compact('erreur'));

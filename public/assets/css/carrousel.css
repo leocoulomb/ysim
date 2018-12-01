@@ -1,0 +1,92 @@
+/* Author S.Groleau, Canopé, https://www.reseau-canope.fr/ */
+.carrousel {
+	position: relative;
+	margin: 0px auto;
+	margin-bottom: 70px;
+	width: 700px;
+	max-width: 100%;
+	height: 260px;
+}
+
+.carrousel a:hover {
+	cursor: pointer;
+	outline: none;
+	text-decoration: none;
+}
+
+#corps #corps_droite .carrousel img {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	margin: 0px auto;
+	cursor: default;
+	width: 100%; 
+	z-index: 1;
+}
+.carrousel .legend button {
+	display: inline;
+	cursor: pointer;
+	border: none;
+	background: none;
+	color : white;
+	padding-left: 15px;
+	padding-right: 15px;
+	opacity: 0.5;
+	outline: none;
+}
+.carrousel .legend button#active {
+	font-size: 22px;
+	opacity: 1;
+}
+
+.carrousel .controls {
+	font-family: Arial, Verdana, serif;
+	font-weight: bold;
+	font-size: 1.1em;
+	color: rgb(255,255,255);
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+}
+
+.carrousel .controls span {
+	font-family: Arial, Verdana, serif;
+	font-weight: normal;
+	font-size: 2.8em;
+	background-color: rgba(255,255,255,0);
+	color: rgb(255,255,255);
+	text-align: center;
+	position: absolute;
+	top: 0px;
+	margin: 0px auto;
+	width: 80px;
+	z-index: 2;
+}
+
+.carrousel .controls .prev {left: 0px;}
+.carrousel .controls .next {right: 0px;}
+.carrousel .controls:hover {cursor: pointer;}
+
+@media screen and (max-width:266px) {
+	.carrousel .controls span {display: none;}
+}
+
+.carrousel .legend {
+	font-family: Arial, Verdana, serif;
+	font-weight: normal;
+	font-size: 1em;
+	background-color: rgba(0,0,0,0.4);
+	color: rgb(255,255,255);
+	text-align: center;
+	position: absolute;
+	left: 0px;
+	margin: 0px auto;
+	padding: 6px 10px 6px 10px;
+	width: calc(100% - 20px); 
+	z-index: 3;
+}
+
+@media screen and (max-width:266px) {
+	.carrousel .legend {margin-top: 30px;}
+}
