@@ -8,7 +8,7 @@
     <div class="row">
 
         <div class="col-lg-3">
-            <h1 class="my-4">Catégories </h1>
+            <h1 class="my-4">Catégories</h1>
             <div class="list-group">
                 @foreach($mesCatArt as $uneCatArt)
                     <a href="{{url('/listerArticle')}}/{{$uneCatArt->CODECAT_ART}}" class="list-group-item">{{$uneCatArt->LIBELLECAT_ART}}</a>

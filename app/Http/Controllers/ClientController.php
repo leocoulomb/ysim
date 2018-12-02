@@ -28,6 +28,29 @@ class ClientController extends Controller {
             return view('formLogin', compact('erreur'));
         }
     }
+    public function create() {
+        $login = Request::input('login');
+        $pwd = Request::input('pwd');
+        $tel = Request::input('tel');
+        $cp = Request::input('cp');
+        $ville = Request::input('ville');
+        $nom = Request::input('nom');
+        $prenom = Request::input('prenom');
+        $adresse = Request::input('adresse');
+
+        $unClient = new Client();
+        $create = $unClient->createCli($login, $pwd, $tel, $cp, $ville, $adresse, $prenom, $nom);
+
+        if ($create){
+            $success='La création à réussi';
+            return view('formAccount', compact('success','mesCatArt'));
+
+        }
+        else{
+            $erreur = "La création à échoué";
+            return view('formAccount', compact('erreur'));
+        }
+    }
     
     /**
      * Déconnecte le visiteur authentifié
@@ -36,7 +59,9 @@ class ClientController extends Controller {
     public function logout(){
         $unClient = new Client();
         $unClient->logout();
-        return view('home');
+        $mesCatArt = new CatArticle();
+        $mesCatArt = $mesCatArt->getListeCategories();
+        return view('home',compact('mesCatArt'));
     }
     
     /**

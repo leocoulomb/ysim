@@ -4,3 +4,9 @@
         <p> Voici l'erreur : {{ $erreur }}</p>
     </div>
 @endif
+@if(isset($success))
+    <div class="alert-success" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <p>{{ $success }}</p>
+    </div>
+@endif

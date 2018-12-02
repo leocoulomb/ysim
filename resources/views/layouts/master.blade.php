@@ -32,28 +32,43 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                    <a class="nav-link menu-proj" href="{{url('/')}}"><i class="fas fa-home"></i>Accueil
+                    <a class="nav-link menu-proj" href="{{url('/')}}"><i class="fas fa-home"></i>&nbsp;&nbsp;Accueil
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link menu-proj" href="{{url('/listerArticle')}}"><i class="fas fa-shopping-cart"></i>Articles</a>
+                    <a class="nav-link menu-proj" href="{{url('/listerArticle')}}"><i class="fas fa-shopping-cart"></i>&nbsp;&nbsp;Articles</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link menu-proj" href="{{url('/listerPanier')}}"><i class="fas fa-shopping-basket"></i>Panier</a>
+                    <a class="nav-link menu-proj" href="{{url('/listerPanier')}}"><i class="fas fa-shopping-basket"></i>&nbsp;&nbsp;Panier</a>
                 </li>
+                @if (Session::get('id') == 0)
                 <li class="nav-item">
-                    <a class="nav-link menu-proj" href="{{url('/getLogin')}}"><i class="fas fa-user-alt"></i>Connexion</a>
+                    <a class="nav-link menu-proj" href="{{url('/getLogin')}}"><i class="fas fa-sign-in-alt"></i>&nbsp;&nbsp;Connexion</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link menu-proj" href="{{url('/monCompte')}}"><i class="fas fa-user-alt"></i>Mon compte</a>
-                </li>
+                @endif
+                @if (Session::get('id') > 0)
+                    <li class="nav-item">
+                        <a class="nav-link menu-proj" href="{{url('/monCompte')}}"><i class="fas fa-user-alt"></i>&nbsp;&nbsp;Mon compte</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link menu-proj" href="{{url('/getLogout')}}"><i class="fas fa-sign-out-alt"></i>&nbsp;&nbsp;Se deconnecter</a>
+                    </li>
+                @endif
             </ul>
         </div>
     </div>
 </nav>
 <div class="container">
 @yield('content')
+    @if (Session::get('id') > 0)
+        <hr>
+        <div class="row username">
+            <div class="col-md-offset-8 col-md-4">
+                <a class="nav-link menu-proj" href="{{url('/monCompte')}}"><i class="fas fa-user-alt"></i>&nbsp;&nbsp;{{Session::get('nomcli')}}&nbsp;{{Session::get('nomcli')}}</a>
+            </div>
+        </div>
+    @endif
 </div>
 <footer class="py-5 bg-dark">
     <div class="container">

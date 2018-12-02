@@ -9,7 +9,14 @@ Route::get('/getLogin', function () {
     return view('formLogin');
 });
 Route::post('/login','ClientController@login');
+Route::get('/getLogout', 'ClientController@logout');
 
+//Créer un compte
+Route::get('/createAcc', function(){
+    return view('formAccount');
+});
+
+Route::post('/inscription', 'ClientController@create');
 //Liste les articles
 Route::get('/listerArticle', 'ArticleAndCatController@listerArticleAndCat');
 
