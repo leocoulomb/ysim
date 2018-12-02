@@ -23,7 +23,7 @@
 <body>
 
 <!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
         <a class="navbar-brand" href="{{url('/')}}">Ysim </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,16 +37,13 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link menu-proj" href="{{url('/listerBoutique')}}"><i class="fas fa-shopping-cart"></i>Boutiques</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link menu-proj" href="{{url('/listerArticle')}}"><i class="fas fa-shopping-cart"></i>Articles</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link menu-proj" href="{{url('/listerPanier')}}"><i class="fas fa-shopping-basket"></i>Panier</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link menu-proj" href="{{url('/connexion')}}"><i class="fas fa-user-alt"></i>Connexion</a>
+                    <a class="nav-link menu-proj" href="{{url('/getLogin')}}"><i class="fas fa-user-alt"></i>Connexion</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link menu-proj" href="{{url('/monCompte')}}"><i class="fas fa-user-alt"></i>Mon compte</a>

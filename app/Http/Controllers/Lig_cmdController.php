@@ -8,8 +8,10 @@
 
 namespace App\Http\Controllers;
 
+use Request;
+use App\metier\lig_cmd;
 
-class Lig_cmdController
+class Lig_cmdController extends Controller
 {
 
 }

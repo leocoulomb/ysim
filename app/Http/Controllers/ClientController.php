@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\metier\CatArticle;
 use Request;
 use App\metier\Client;
+use App\metier\MonException;
 
 class ClientController extends Controller {
     
@@ -14,10 +16,12 @@ class ClientController extends Controller {
     public function login() {
         $login = Request::input('login');
         $pwd = Request::input('pwd');        
-        $unClient = new Visiteur();
-        $connected = $unClient->login($login, $pwd);
+        $unClient = new Client();
+        $connected = $unClient->signIn($login, $pwd);
+        $mesCatArt = new CatArticle();
+        $mesCatArt = $mesCatArt->getListeCategories();
         if ($connected){
-            return view('home');
+            return view('home', compact('mesCatArt'));
         }
         else{
             $erreur = "Login ou mot de passe inconnu !";

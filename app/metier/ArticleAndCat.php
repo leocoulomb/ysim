@@ -53,18 +53,18 @@ class ArticleAndCat extends Model
         }
     }
 
-    public function getArticleAndCatByBout($id)
+
+    public function getByNumart($NUMART)
     {
         try {
-            $mesArticlesAndCatByBout = DB::table('ARTICLEANDCAT')
+            $mesArticlesAndCatByCode = DB::table('ARTICLEANDCAT')
                 ->Select()
-                ->join('propose', 'propose.NUMART','=', 'ARTICLEANDCAT.NUMART')
-                ->join('boutique','boutique.NUMBOUT','=','propose.NUMBOUT')
-                ->where('propose.NUMBOUT','=' ,$id)
-                ->get();
-            return $mesArticlesAndCatByBout;
+                ->where('NUMART', $NUMART)
+                ->first();
+            return $mesArticlesAndCatByCode;
         } catch (QueryException $e) {
             $e->getMessage();
         }
     }
+
 }

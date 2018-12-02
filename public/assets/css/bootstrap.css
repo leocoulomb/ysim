@@ -2966,7 +2966,6 @@ select[multiple].input-lg {
 .form-horizontal .checkbox,
 .form-horizontal .radio-inline,
 .form-horizontal .checkbox-inline {
-  padding-top: 7px;
   margin-top: 0;
   margin-bottom: 0;
 }
@@ -2980,7 +2979,6 @@ select[multiple].input-lg {
 }
 @media (min-width: 768px) {
   .form-horizontal .control-label {
-    padding-top: 7px;
     margin-bottom: 0;
     text-align: right;
   }

@@ -31,15 +31,15 @@ class Client extends Model {
     * @param type $pwd : MdP du visiteur
     * @return boolean : True or false
     */
-    public function login($login, $pwd) {
+    public function signIn($login, $pwd) {
         $connected = false;
         $client = DB::table('client')
                 ->select()
-                ->where('loginCli', '=', $login)
+                ->where('LOGINCLI', '=', $login)
                 ->first();
         if ($client) {
-            if ($client->pwdCli == $pwd) {
-                Session::put('id', $client->numCli);
+            if ($client->PWDCLI == $pwd) {
+                Session::put('id', $client->NUMCLI);
                 $connected = true;
             }
         }
