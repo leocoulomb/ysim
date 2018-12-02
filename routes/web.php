@@ -18,3 +18,6 @@ Route::get('/boutique/{id}', 'BoutiqueController@accesBoutique');
 
 //Lister boutiques
 Route::get('/listerBoutique', 'BoutiqueController@listerBoutique');
+
+//Lister boutiques
+Route::get('/listerPanier', 'BoutiqueController@listerBoutique');
