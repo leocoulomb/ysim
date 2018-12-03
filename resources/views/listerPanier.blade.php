@@ -1,7 +1,4 @@
 @extends ('layouts.master')
-@section('panier')
-    <span class="sr-only">(current)</span>
-@endsection
 @section('content')
     <center><h1 class="title">{{$title}}</h1></center>
     <hr/>
