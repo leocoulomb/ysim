@@ -13,10 +13,17 @@ Route::get('/getLogout', 'ClientController@logout');
 
 //Créer un compte
 Route::get('/createAcc', function(){
-    return view('formAccount');
+    $title = 'Création de compte';
+    return view('formAccount', compact('title'));
 });
 
 Route::post('/inscription', 'ClientController@create');
+
+//Modifier les infos de son compte
+Route::get('/monCompte', 'ClientController@getUnClient');
+
+Route::post('/updateAcc', 'ClientController@modifCli');
+
 //Liste les articles
 Route::get('/listerArticle', 'ArticleAndCatController@listerArticleAndCat');
 

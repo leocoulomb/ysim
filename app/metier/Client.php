@@ -1,6 +1,7 @@
 <?php
 
 namespace App\metier;
+use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
@@ -76,6 +77,40 @@ class Client extends Model {
      */
     public function logout(){
         Session::put('id', 0);
+    }
+
+    public function getById(){
+        try{
+            $client = DB::table('client')
+                ->select()
+                ->where('NUMCLI', '=', Session::get('id'))
+                ->first();
+        } catch (QueryException $e){
+            return $e->getMessage();
+        }
+        return $client;
+    }
+
+    public function updateCli($login, $pwd, $tel, $cp, $ville, $adresse, $prenom, $nom) {
+        $update = false;
+        try {
+            DB::table('CLIENT')
+                ->where('NUMCLI', Session::get('id'))
+                ->update([
+                    'LOGINCLI' => $login,
+                    'PWDCLI' => $pwd,
+                    'TELCLI' => $tel,
+                    'CPCLI' => $cp,
+                    'VILLECLI' => $ville,
+                    'ADRESSECLI' => $adresse,
+                    'PRENOMCLI' => $prenom,
+                    'NOMCLI' => $nom
+                ]);
+        } catch (QueryException $e) {
+            throw new MonException($e->getMessage(), 5);
+        }
+        $update = true;
+        return $update;
     }
 }
 ?>

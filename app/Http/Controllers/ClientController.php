@@ -43,7 +43,7 @@ class ClientController extends Controller {
 
         if ($create){
             $success='La création à réussi';
-            return view('formAccount', compact('success','mesCatArt'));
+            return view('formAccount', compact('success'));
 
         }
         else{
@@ -63,7 +63,54 @@ class ClientController extends Controller {
         $mesCatArt = $mesCatArt->getListeCategories();
         return view('home',compact('mesCatArt'));
     }
-    
+
+    public function getUnClient(){
+        try{
+            $unClient = new Client();
+            $unClient = $unClient->getById();
+            $title = 'Modifier les informations du compte';
+            return view('formAccount', compact('unClient','title'));
+        } catch (MonException $e) {
+            $erreur = $e->getMessage();
+            return view('Error', compact('erreur'));
+        } catch (Exception $ex) {
+            $erreur = $ex->getMessage();
+            return view('Error', compact('erreur'));
+        }
+    }
+
+    public function modifCli(){
+        try{
+            $login = Request::input('login');
+            $pwd = Request::input('pwd');
+            $tel = Request::input('tel');
+            $cp = Request::input('cp');
+            $ville = Request::input('ville');
+            $nom = Request::input('nom');
+            $prenom = Request::input('prenom');
+            $adresse = Request::input('adresse');
+            $unClient = new Client();
+            $update = $unClient->updateCli($login, $pwd, $tel, $cp, $ville, $adresse, $prenom, $nom);
+            $unClient = $unClient->getById();
+            $title = 'Modifier les informations du compte';
+            if ($update){
+                $success='La modification à réussi';
+                return view('formAccount', compact('success','title','unClient'));
+
+            }
+            else{
+                $erreur = "La modification à échoué";
+                return view('formAccount', compact('erreur','title','unClient'));
+            }
+        } catch (MonException $e) {
+            $erreur = $e->getMessage();
+            return view('Error', compact('erreur'));
+        } catch (Exception $ex) {
+            $erreur = $ex->getMessage();
+            return view('Error', compact('erreur'));
+        }
+
+    }
     /**
      * Initialise le formulaire d'authentification
      * @return type Vue formLogin

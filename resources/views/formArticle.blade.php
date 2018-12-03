@@ -2,6 +2,7 @@
 @section('content')
     <center><h1 class="title">{{$title}}</h1></center>
     <hr/>
+    <div class="row">
     @if(isset($unArticle))
     <div class="well col-md-12">
         <div class="form-horizontal">
@@ -48,6 +49,7 @@
             </button>
             <a class="btn btn-default btn-primary"   href="{{ url()->previous() }}">
                 <span class="glyphicon glyphicon-home"></span> Retour </a></center>
+    </div>
     </div>
     @endif
 @endsection
