@@ -26,7 +26,9 @@ class Article extends Model
         'NOMART',
         'PRIXART',
         'DESCART',
-        'IMGART'
+        'IMGART',
+        'QTESTOCK',
+        'PRIXLIVRAISON'
     ];
 
     //SELECT * FROM ARTICLE

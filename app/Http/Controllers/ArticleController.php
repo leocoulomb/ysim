@@ -9,6 +9,7 @@
 namespace App\Http\Controllers;
 
 use App\metier\Article;
+use App\metier\Panier;
 use Exception;
 use App\metier\MonException;
 
@@ -28,7 +29,9 @@ class ArticleController extends Controller
             return view('Error', compact('erreur'));
         }
     }
-
+    public function Cart(){
+        new Panier(null);
+    }
     public function listerPanier(){
         try{
             $mesArticles = new Article();
