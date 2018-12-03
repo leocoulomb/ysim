@@ -28,4 +28,20 @@ class ArticleController extends Controller
             return view('Error', compact('erreur'));
         }
     }
+
+    public function listerPanier(){
+        try{
+            $mesArticles = new Article();
+            $mesArticles = $mesArticles->getListeArticles();
+            $title = 'Liste des articles du panier';
+            return view('listerArticle', compact('mesArticles','title'));
+
+        } catch (MonException $e) {
+            $erreur = $e->getMessage();
+            return view('Error', compact('erreur'));
+        } catch (Exception $ex) {
+            $erreur = $ex->getMessage();
+            return view('Error', compact('erreur'));
+        }
+    }
 }

@@ -2,6 +2,9 @@
 @section('css')
     {!! Html::style('assets/css/carrousel.css') !!}
 @endsection
+@section('accueil')
+    <span class="sr-only">(current)</span>
+@endsection
 @section('content')
     <center><h1 class="title">Accueil</h1></center>
     <hr/>

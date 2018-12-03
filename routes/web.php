@@ -31,7 +31,7 @@ Route::get('/listerArticle', 'ArticleAndCatController@listerArticleAndCat');
 Route::get('/listerArticle/{CODECAT_ART}', 'ArticleAndCatController@listerArticleByCat');
 
 //Lister le panier
-Route::get('/listerPanier', 'BoutiqueController@listerBoutique');
+Route::get('/listerPanier', 'ArticleController@listerPanier');
 
 //Afficher un article
 Route::get('/formArticle/{NUMART}','ArticleAndCatController@getUnArticle');

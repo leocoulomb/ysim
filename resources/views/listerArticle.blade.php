@@ -1,4 +1,7 @@
 @extends('layouts.master')
+@section('articles')
+    <span class="sr-only">(current)</span>
+@endsection
 @section('content')
         <center><h1 class="title">{{$title}}</h1></center>
         <hr/>
@@ -18,6 +21,9 @@
                     </div>
                     <div class="card-footer" onclick="javascript: window.location ='{{ url('/listerArticle')}}/{{$unArticle->CODECAT_ART}}';">
                         <small class="text-muted">{{$unArticle->LIBELLECAT_ART}}</small>
+                    </div>
+                    <div class="card-footer">
+                        <center><div class="btn-primary btn"  onclick="javascript: window.location ='{{ url('/addCart')}}/{{$unArticle->CODECAT_ART}}';"><i class="fas fa-plus-circle"></i>Ajouter au panier</div></center>
                     </div>
                 </div>
             </div>

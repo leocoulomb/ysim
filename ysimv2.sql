@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  Dim 02 déc. 2018 à 23:58
+-- Généré le :  lun. 03 déc. 2018 à 09:51
 -- Version du serveur :  10.1.37-MariaDB
 -- Version de PHP :  7.2.12
 
@@ -130,7 +130,7 @@ CREATE TABLE `client` (
 
 INSERT INTO `client` (`NUMCLI`, `NOMCLI`, `PRENOMCLI`, `ADRESSECLI`, `VILLECLI`, `CPCLI`, `TELCLI`, `LOGINCLI`, `PWDCLI`) VALUES
 ('1', 'qsqsqs', 'qsqsqs', 'qsqs', 'qsqsqs', '69009', '750963683', 'sqsqs', 'qsqsqs'),
-('2', 'LEMARCHAND', 'COLETTE', '3 rue de la chatounette', 'Lyon', '69330', '658523826', 'login', 'mdp'),
+('2', 'LEMARCHAND', 'COLETTE', '3 rue de la chatounette', 'Lyon', '69330', '658523826', 'COLETTE', 'COLETTE'),
 ('3', 'ROCANCOURT', 'XAVIER', '3 rue de la chatounette', 'Lyon', '69330', '658823825', 'login', 'mdp'),
 ('4', 'BUISARD', 'GEORGES', '3 rue de la chatounette', 'Lyon', '69330', '658523825', 'login', 'mdp'),
 ('5', 'LAROSE', 'SOLANGE', '3 rue de la chatounette', 'Lyon', '69330', '659523825', 'login', 'mdp'),
