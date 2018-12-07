@@ -61,6 +61,8 @@ class ClientController extends Controller {
         $unClient->logout();
         $mesCatArt = new CatArticle();
         $mesCatArt = $mesCatArt->getListeCategories();
+        if(isset($_SESSION['cart']))
+            $_SESSION['cart'] = null;
         return view('home',compact('mesCatArt'));
     }
 

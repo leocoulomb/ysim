@@ -20,7 +20,7 @@
                         <small class="text-muted">{{$unArticle->LIBELLECAT_ART}}</small>
                     </div>
                     <div class="card-footer">
-                        <center><div class="btn-primary btn"  onclick="javascript: window.location ='{{ url('/addCart')}}/{{$unArticle->CODECAT_ART}}';"><i class="fas fa-plus-circle"></i>Ajouter au panier</div></center>
+                        <center><div class="btn-primary btn"  onclick="javascript: window.location ='{{ url('/addCart')}}/{{$unArticle->NUMART}}';"><i class="fas fa-plus-circle"></i>Ajouter au panier</div></center>
                     </div>
                 </div>
             </div>
@@ -41,6 +41,9 @@
                             </div>
                             <div class="card-footer" onclick="javascript: window.location ='{{ url('/listerArticle')}}/{{$unArticle->CODECAT_ART}}';">
                                 <small class="text-muted">{{$unArticle->LIBELLECAT_ART}}</small>
+                            </div>
+                            <div class="card-footer">
+                                <center><div class="btn-primary btn"  onclick="javascript: window.location ='{{ url('/addCart')}}/{{$unArticle->NUMART}}';"><i class="fas fa-plus-circle"></i>Ajouter au panier</div></center>
                             </div>
                         </div>
                     </div>

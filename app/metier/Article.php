@@ -41,4 +41,16 @@ class Article extends Model
             $e->getMessage();
         }
     }
+    public function getByNumart($NUMART)
+    {
+        try {
+            $mesArticlesById = DB::table('ARTICLE')
+                ->Select()
+                ->where('NUMART', $NUMART)
+                ->first();
+            return $mesArticlesById;
+        } catch (QueryException $e) {
+            $e->getMessage();
+        }
+    }
 }

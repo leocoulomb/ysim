@@ -24,6 +24,9 @@ Route::get('/monCompte', 'ClientController@getUnClient');
 
 Route::post('/updateAcc', 'ClientController@modifCli');
 
+//Historique des commandes
+Route::get('/histoCmd','CmdwithartController@listerCmd');
+
 //Liste les articles
 Route::get('/listerArticle', 'ArticleAndCatController@listerArticleAndCat');
 
@@ -32,6 +35,9 @@ Route::get('/listerArticle/{CODECAT_ART}', 'ArticleAndCatController@listerArticl
 
 //Lister le panier
 Route::get('/listerPanier', 'ArticleController@listerPanier');
+
+//Ajouter un article au panier
+Route::get('/addCart/{NUMART}', 'ArticleController@addToCart');
 
 //Afficher un article
 Route::get('/formArticle/{NUMART}','ArticleAndCatController@getUnArticle');

@@ -44,7 +44,8 @@
             </div>
         </div>
             <center>
-            <button type="submit" class="btn btn-default btn-success"><span class="glyphicon glyphicon-ok"></span>
+            <button type="submit" class="btn btn-default btn-success" onclick="javascript: window.location ='{{ url('/addCart')}}/{{$unArticle->NUMART}}';">
+                <span class="glyphicon glyphicon-ok"></span>
                 Ajouter au panier
             </button>
             <a class="btn btn-default btn-primary"   href="{{ url()->previous() }}">

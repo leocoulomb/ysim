@@ -1,6 +1,5 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
     <html lang="fr">
-
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -17,7 +16,6 @@
 
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
         @yield('css')
-
     </head>
 
 <body>
@@ -52,6 +50,9 @@
                         <a class="nav-link menu-proj" href="{{url('/monCompte')}}"><i class="fas fa-user-alt"></i>&nbsp;&nbsp;Mon compte</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link menu-proj" href="{{url('/histoCmd')}}"><i class="far fa-newspaper"></i>&nbsp;&nbsp;Historiques des commandes</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link menu-proj" href="{{url('/getLogout')}}"><i class="fas fa-sign-out-alt"></i>&nbsp;&nbsp;Se deconnecter</a>
                     </li>
                 @endif
@@ -64,7 +65,7 @@
     @if (Session::get('id') > 0)
         <hr>
         <div class="row username">
-            <div class="col-md-offset-8 col-md-4">
+            <div class="col-md-offset-7 col-md-5">
                 <a class="nav-link menu-proj" href="{{url('/monCompte')}}"><i class="fas fa-user-alt"></i>&nbsp;&nbsp;{{Session::get('nomcli')}}&nbsp;{{Session::get('nomcli')}}</a>
             </div>
         </div>

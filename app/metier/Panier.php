@@ -10,6 +10,7 @@ namespace App\metier;
 use Illuminate\Support\Facades\Session;
 use DB;
 
+
 class Panier
 {
     public $items=null;
@@ -29,22 +30,7 @@ class Panier
         }
     }
 
-    public function add($item, $id){
-        $storedItem=['qty'=>0,'price'=> $item->price,'item'=>$item,'img'=>$item->imagePath];
-        if ($this->items){
-            if (array_key_exists($id,$this->items)){
-                $storedItem = $this->items[$id];
-//          $storedItem= $this->items[$img];
-            }
-        }
-        $storedItem['qty']++;
-        $storedItem['price']= $item->price * $storedItem['qty'];
-        $storedItem['img']=$item->imagePath;
-        $this->items[$id]=$storedItem;
-        $this->totalQty++;
-        $this->totalPrice += $item->price;
-
-        $this->imgPaths=$item->imagePath;
+    public function add($id){
     }
 
 //  public function reduceByOne($id){

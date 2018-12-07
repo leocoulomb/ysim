@@ -32,11 +32,11 @@ CREATE TABLE `article` (
   `NUMART` char(25) NOT NULL,
   `CODECAT_ART` char(25) NOT NULL,
   `NOMART` char(250) DEFAULT NULL,
-  `PRIXART` decimal(10,0) DEFAULT NULL,
+  `PRIXART` decimal(7,2) DEFAULT NULL,
   `DESCART` longtext,
   `IMGART` char(250) DEFAULT NULL,
-  `QTESTOCK` decimal(10,0) DEFAULT NULL,
-  `PRIXLIVRAISON` decimal(10,0) DEFAULT NULL
+  `QTESTOCK` int(5) DEFAULT NULL,
+  `PRIXLIVRAISON` decimal(5,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -71,12 +71,12 @@ INSERT INTO `article` (`NUMART`, `CODECAT_ART`, `NOMART`, `PRIXART`, `DESCART`, 
 --
 CREATE TABLE `articleandcat` (
 `NUMART` char(25)
-,`PRIXART` decimal(10,0)
+,`PRIXART` decimal(7,2)
 ,`NOMART` char(250)
 ,`DESCART` longtext
 ,`IMGART` char(250)
-,`QTESTOCK` decimal(10,0)
-,`PRIXLIVRAISON` decimal(10,0)
+,`QTESTOCK` int(5)
+,`PRIXLIVRAISON` decimal(5,2)
 ,`CODECAT_ART` char(25)
 ,`LIBELLECAT_ART` longtext
 ,`DESCCAT_ART` longtext
@@ -113,13 +113,13 @@ INSERT INTO `cat_article` (`CODECAT_ART`, `LIBELLECAT_ART`, `DESCCAT_ART`) VALUE
 --
 
 CREATE TABLE `client` (
-  `NUMCLI` decimal(10,0) NOT NULL,
+  `NUMCLI` int(10) NOT NULL,
   `NOMCLI` char(250) DEFAULT NULL,
   `PRENOMCLI` char(250) DEFAULT NULL,
-  `ADRESSECLI` longtext,
+  `ADRESSECLI` longtext DEFAULT NULL,
   `VILLECLI` char(250) DEFAULT NULL,
-  `CPCLI` decimal(5,0) DEFAULT NULL,
-  `TELCLI` decimal(10,0) DEFAULT NULL,
+  `CPCLI` char(5) DEFAULT NULL,
+  `TELCLI` char(10) DEFAULT NULL,
   `LOGINCLI` char(250) DEFAULT NULL,
   `PWDCLI` char(250) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -150,35 +150,54 @@ INSERT INTO `client` (`NUMCLI`, `NOMCLI`, `PRENOMCLI`, `ADRESSECLI`, `VILLECLI`,
 --
 
 CREATE TABLE `lig_cmd` (
-  `NUMCLI` decimal(10,0) NOT NULL,
+  `NUMCMD` int(10) NOT NULL,
   `NUMART` char(25) NOT NULL,
-  `DATECMD` date NOT NULL,
-  `QTECMD` decimal(10,0) DEFAULT NULL,
-  `DATEPREVUARRIVE` date DEFAULT NULL,
-  `CBCMD` decimal(10,0) DEFAULT NULL
+  `QTECMD` int(5) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `lig_cmd`
 --
 
-INSERT INTO `lig_cmd` (`NUMCLI`, `NUMART`, `DATECMD`, `QTECMD`, `DATEPREVUARRIVE`, `CBCMD`) VALUES
-('1', '0001', '2018-11-14', '1', '2018-12-27', '1111111'),
-('1', '0006', '2018-11-14', '1', '2018-12-27', '1111111'),
-('2', '0003', '2018-11-14', '7', '2018-12-27', '1111111'),
-('3', '0004', '2018-11-14', '2', '2018-12-27', '1111111'),
-('4', '0009', '2018-11-14', '3', '2018-12-27', '1111111'),
-('4', '0015', '2018-11-15', '1', '2018-12-27', '1111111'),
-('5', '0002', '2018-11-14', '2', '2018-12-27', '1111111'),
-('5', '0002', '2018-12-14', '5', '2018-12-27', '1111111'),
-('6', '0001', '2018-11-14', '1', '2018-12-27', '1111111'),
-('6', '0011', '2018-11-14', '3', '2018-12-27', '1111111'),
-('7', '0018', '2018-11-14', '10', '2018-12-27', '1111111'),
-('8', '0005', '2018-11-14', '1', '2018-12-27', '1111111'),
-('8', '0008', '2018-11-14', '2', '2018-12-27', '1111111');
+INSERT INTO `lig_cmd` (`NUMCMD`, `NUMART`, `QTECMD`) VALUES
+('1', '0001', '1'),
+('1', '0006', '1'),
+('2', '0003', '7'),
+('3', '0004', '2'),
+('4', '0009', '3'),
+('4', '0015', '1'),
+('5', '0002', '2'),
+('5', '0006', '5'),
+('6', '0001', '1'),
+('6', '0011', '3'),
+('7', '0018', '10'),
+('8', '0005', '1'),
+('8', '0008', '2');
 
 -- --------------------------------------------------------
 
+CREATE TABLE `commande` (
+  `NUMCMD` int(10) NOT NULL,
+  `NUMCLI` int(10) NOT NULL,
+  `DATECMD` date DEFAULT NULL,
+  `DATEPREVUARRIVE` date DEFAULT NULL,
+  `CBCMD` char(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO `commande` (`NUMCMD`, `NUMCLI`, `DATECMD`, `DATEPREVUARRIVE`, `CBCMD`) VALUES
+('1', '1', '2018-11-14', '2018-11-14', '1111111'),
+('10', '8', '2018-11-14', '2018-11-14', '8888888'),
+('11', '8', '2018-11-14', '2018-11-14', '8888888'),
+('12', '7', '2018-11-14', '2018-11-14', '7777777'),
+('13', '5', '2018-11-14', '2018-11-14', '5555555'),
+('2', '1', '2018-11-14', '2018-11-14', '1111111'),
+('3', '2', '2018-11-14', '2018-11-14', '2222222'),
+('4', '2', '2018-11-14', '2018-11-14', '2222222'),
+('5', '3', '2018-11-14', '2018-11-14', '3333333'),
+('6', '4', '2018-11-14', '2018-11-14', '4444444'),
+('7', '5', '2018-11-14', '2018-11-14', '5555555'),
+('8', '6', '2018-11-14', '2018-11-14', '6666666'),
+('9', '7', '2018-11-14', '2018-11-14', '7777777');
 --
 -- Structure de la vue `articleandcat`
 --
@@ -213,14 +232,20 @@ ALTER TABLE `client`
 -- Index pour la table `lig_cmd`
 --
 ALTER TABLE `lig_cmd`
-  ADD PRIMARY KEY (`NUMCLI`,`NUMART`,`DATECMD`),
-  ADD KEY `FK_LIG_CMD2` (`NUMCLI`),
+  ADD PRIMARY KEY (`NUMCMD`,`NUMART`),
+  ADD KEY `FK_LIG_CMD2` (`NUMCMD`),
   ADD KEY `FK_LIG_CMD3` (`NUMART`);
+
+ALTER TABLE `commande`
+  ADD PRIMARY KEY (`NUMCMD`),
+  ADD KEY `FK_PASSE_CMD` (`NUMCLI`);
+
 
 --
 -- Contraintes pour les tables déchargées
 --
-
+ALTER TABLE `commande`
+  ADD CONSTRAINT `FK_PASSE_CMD` FOREIGN KEY (`NUMCLI`) REFERENCES `client` (`NUMCLI`);
 --
 -- Contraintes pour la table `article`
 --
@@ -231,7 +256,7 @@ ALTER TABLE `article`
 -- Contraintes pour la table `lig_cmd`
 --
 ALTER TABLE `lig_cmd`
-  ADD CONSTRAINT `FK_LIG_CMD` FOREIGN KEY (`NUMCLI`) REFERENCES `client` (`NUMCLI`),
+  ADD CONSTRAINT `FK_LIG_CMD` FOREIGN KEY (`NUMCMD`) REFERENCES `commande` (`NUMCMD`),
   ADD CONSTRAINT `FK_LIG_CMD2` FOREIGN KEY (`NUMART`) REFERENCES `article` (`NUMART`);
 COMMIT;
 
