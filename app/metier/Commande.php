@@ -25,21 +25,25 @@ class Commande extends Model
         'CBCMD',
         'PRIXCMD'
     ];
-
     public $timestamps = false;
 
-    public function getCmdByNumCli()
-    {
+    public function addCmd($cb,$prix){
+        $id = null;
         try {
-            $mesCmd = DB::table('cmdwithart')
-                ->Select()
-                ->where('NUMCLI', '=', Session::get('id'))
-                ->get();
-            return $mesCmd;
+            $lastId = DB::table('COMMANDE')
+                ->select('NUMCMD')
+                ->orderBy('NUMCMD','desc')
+                ->first();
+            $id = $lastId->NUMCMD + 1;
+            DB::table('COMMANDE')->insert(
+                [
+                    'NUMCMD'=>$id,'NUMCLI'=> Session::get('id'),
+                    'DATECMD' => date("Y-m-d"), 'DATEPREVUARRIVE' => date('y:m:d', strtotime("+14 days")),
+                    'CBCMD' => $cb,'PRIXCMD' => $prix]
+            );
         } catch (QueryException $e) {
             $e->getMessage();
         }
+        return $id;
     }
-
-
 }

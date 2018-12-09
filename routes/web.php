@@ -46,8 +46,10 @@ Route::get('/addQte/{NUMART}', 'ArticleController@addQte');
 Route::get('/deleteQte/{NUMART}', 'ArticleController@deleteQte');
 
 //Passer commande
-Route::get('/passerCommande','CommandeController@addCmd');
+Route::get('/passerCommande/{PRIXPANIER}','CommandeController@passerCmd');
 
+//Valider commande
+Route::post('/validerCommande','CommandeController@validerCmd');
 
 //Afficher un article
 Route::get('/formArticle/{NUMART}','ArticleAndCatController@getUnArticle');

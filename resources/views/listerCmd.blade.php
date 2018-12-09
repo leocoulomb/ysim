@@ -3,6 +3,7 @@
     <center><h1 class="title">{{$title}}</h1></center>
     <hr/>
     <div class="row">
+        @if(count($mesCmd) > 0)
         <table width="100%" class="table table-bordered table-striped">
             <thead>
             <tr>
@@ -31,5 +32,20 @@
             @endforeach
             <br> <br>
         </table>
+            @else
+            <div class="col-md-offset-3 col-md-7">
+                <h1 class="title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Vous n'avez passé aucune commande</h1><br>
+            </div>
+            <div class="col-md-offset-5 col-md-6">
+                <button class="btn btn-default btn-primary"
+                        onclick="javascript: window.location ='{{ url('/listerArticle')}}';">
+                    <i class="fas fa-shopping-cart"></i>Acceder à la boutique</button>
+            </div><br><br>
+            @endif
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            @include('error')
+        </div>
     </div>
 @endsection

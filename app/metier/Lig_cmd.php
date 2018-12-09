@@ -9,7 +9,8 @@
 namespace App\metier;
 use Illuminate\Database\Eloquent\Model;
 use DB;
-
+use Illuminate\Database\QueryException;
+session_start();
 class Lig_cmd extends Model
 {
     //On déclare la table lig_cmd
@@ -23,6 +24,24 @@ class Lig_cmd extends Model
         'DATEPREVUARRIVE',
         'CBCMD'
     ];
+
+    public function addLigCmd($numCmd){
+        $add = false;
+        try{
+            foreach($_SESSION['cart'] as $Cart){
+                DB::table('lig_cmd')->insert(
+                    [
+                        'NUMCMD'=>$numCmd,'NUMART'=> $Cart['id'],
+                        'QTECMD' => $Cart['qte']]
+                );
+            }
+            $add = true;
+        }catch (QueryException $e) {
+            $e->getMessage();
+        }
+        return $add;
+
+    }
 
 
 

@@ -44,13 +44,14 @@ class Client extends Model {
                 Session::put('id', $client->NUMCLI);
                 Session::put('nomcli', $client->NOMCLI);
                 Session::put('prenomcli', $client->PRENOMCLI);
+                Session::put('rolecli', $client->ROLECLI);
                 $connected = true;
             }
         }
         return $connected;
     }
 
-    public function createCli($login, $pwd, $tel, $cp, $ville, $adresse, $prenom, $nom, $role) {
+    public function createCli($login, $pwd, $tel, $cp, $ville, $adresse, $prenom, $nom) {
         $create = false;
         try {
             $lastId = DB::table('CLIENT')
@@ -64,7 +65,7 @@ class Client extends Model {
                     'NUMCLI'=> $id,
                     'NOMCLI' => $nom, 'PRENOMCLI' => $prenom, 'ADRESSECLI' => $adresse,
                     'VILLECLI' => $ville,'CPCLI' => $cp,'TELCLI' => $tel,
-                    'LOGINCLI' => $login,'PWDCLI' => $pwd, 'ROLECLI' => $role]
+                    'LOGINCLI' => $login,'PWDCLI' => $pwd, 'ROLECLI' => 0]
             );
             $create = true;
         } catch (QueryException $e) {
@@ -92,7 +93,7 @@ class Client extends Model {
         return $client;
     }
 
-    public function updateCli($login, $pwd, $tel, $cp, $ville, $adresse, $prenom, $nom, $role) {
+    public function updateCli($login, $pwd, $tel, $cp, $ville, $adresse, $prenom, $nom) {
         $update = false;
         try {
             DB::table('CLIENT')
@@ -106,7 +107,7 @@ class Client extends Model {
                     'ADRESSECLI' => $adresse,
                     'PRENOMCLI' => $prenom,
                     'NOMCLI' => $nom,
-                    'ROLECLI' => $role
+                    'ROLECLI' => Session::get('rolecli')
                 ]);
         } catch (QueryException $e) {
             throw new MonException($e->getMessage(), 5);

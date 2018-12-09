@@ -1,13 +1,20 @@
 @extends('layouts.master')
 @section('content')
-    {!! Form::open(['url' => 'login']) !!}
+    {!! Form::open(['url' => 'validerCommande']) !!}
+    <div class="row">
     <div class="col-md-12 well well-md">
         <center><h1>Entrez votre numéro de carte bancaire</h1></center><hr><br/>
         <div class="form-horizontal">
             <div class="form-group">
                 <label class="col-md-3 control-label"><i class="far fa-credit-card"></i>&nbsp;&nbsp;&nbsp;CB : </label>
                 <div class="col-md-6  col-md-3">
-                    <input type="text" name="cb" class="form-control" placeholder="Votre numéro de carte banquaire" required autofocus>
+                    <input type="text" name="cb" maxlength="10" minlength="10" class="form-control" placeholder="Votre numéro de carte banquaire" required autofocus>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <input type="hidden" name="prixCmd" value={{$PRIXPANIER}}>
+                    <p class="priceCart">{{$prix}}</p>
                 </div>
             </div>
             <div class="form-group">
@@ -20,10 +27,12 @@
                     </center>
                 </div>
             </div>
+
             <div class="col-md-6 col-md-offset-3">
                 @include('error')
             </div>
         </div>
+    </div>
     </div>
     {!! Form::close() !!}
 @stop

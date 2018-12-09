@@ -3,7 +3,7 @@
     <center><h1 class="title">{{$title}}</h1></center>
     <hr/>
     <div class="row">
-        @if(isset($_SESSION['cart']) || !is_null($_SESSION['cart']))
+        @if(isset($_SESSION['cart']) && !is_null($_SESSION['cart']) && count($_SESSION['cart']) > 0)
         <table class="table table-bordered table-striped">
             <thead>
             <tr>
@@ -47,9 +47,23 @@
             @endfor
             <br> <br>
         </table>
-
-        @endif
-            @if(!isset($_SESSION['cart']) || is_null($_SESSION['cart']))
+    </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="priceCart">Prix totale du panier : {{$prixCart}}.00  €</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-md-offset-5">
+                    <button class="btn btn-default btn-primary"
+                            onclick="javascript:
+                                    if(confirm('Voulez vous vraiment passez commande ?'))
+                                    window.location ='{{ url('/passerCommande')}}/{{$prixCart}}';
+                                    ">
+                        <i class="fas fa-truck"></i>Passer commande</button>
+                </div>
+            </div>
+        @else
             <div class="col-md-offset-3 col-md-7">
                 <h1 class="title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Votre panier est actuellement vide</h1><br>
             </div>
@@ -58,27 +72,9 @@
                         onclick="javascript: window.location ='{{ url('/listerArticle')}}';">
                     <i class="fas fa-shopping-cart"></i>Acceder à la boutique</button>
             </div>
-
+            </div>
         @endif
 
-            <hr/>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <p class="priceCart">Prix totale du panier : {{$prixCart}}.00  €</p>
-        </div>
-    </div>
-    <hr>
-    <div class="row">
-        <div class="col-md-4 col-md-offset-5">
-            <button class="btn btn-default btn-primary"
-                    onclick="javascript:
-                            if(confirm('Voulez vous vraiment passez commande ?'))
-                            window.location ='{{ url('/passerCommande')}}';
-                            ">
-                <i class="fas fa-truck"></i>Passer commande</button>
-        </div>
-    </div>
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             @include('error')
