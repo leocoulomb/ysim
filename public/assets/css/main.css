@@ -18,3 +18,7 @@ textarea {
     vertical-align: middle !important;
     text-align: center;
 }
+.priceCart{
+    text-align: right;
+    color : #18BC9C;
+}

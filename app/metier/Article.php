@@ -53,4 +53,23 @@ class Article extends Model
             $e->getMessage();
         }
     }
+
+    public function deleteArticle($NUMART)
+    {
+        try {
+            DB::table('ARTICLE')->where('NUMART', '=', $NUMART)->delete();
+        } catch (QueryException $e) {
+            throw new MonException($e->getMessage(), 5);
+        }
+    }
+
+    public function updateArticle($DESCART, $PRIXART, $PRIXLIVRAISON, $QTESTOCK) {
+        try {
+            DB::table('ARTICLE')->where('NUMART', '=', $NUMART)
+                ->update(['DESCART' => $DESCART, 'PRIXART' => $PRIXART,'PRIXLIVRAISON' => $PRIXLIVRAISON,'QTESTOCK' => $QTESTOCK]);
+        } catch (QueryException $e) {
+            throw new MonException($e->getMessage(), 5);
+        }
+    }
+
 }

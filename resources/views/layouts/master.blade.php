@@ -66,7 +66,7 @@
         <hr>
         <div class="row username">
             <div class="col-md-offset-7 col-md-5">
-                <a class="nav-link menu-proj" href="{{url('/monCompte')}}"><i class="fas fa-user-alt"></i>&nbsp;&nbsp;{{Session::get('nomcli')}}&nbsp;{{Session::get('nomcli')}}</a>
+                <a class="nav-link menu-proj" href="{{url('/monCompte')}}"><i class="fas fa-user-alt"></i>&nbsp;&nbsp;{{Session::get('prenomcli')}}&nbsp;{{Session::get('nomcli')}}</a>
             </div>
         </div>
     @endif

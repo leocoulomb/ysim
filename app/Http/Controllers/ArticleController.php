@@ -36,7 +36,7 @@ class ArticleController extends Controller
     {
         try {
             $title = 'Liste des articles du panier';
-            return view('listerArticle', compact('title'));
+            return view('listerPanier', compact('title'));
         } catch (MonException $e) {
             $erreur = $e->getMessage();
             return view('Error', compact('erreur'));
@@ -79,13 +79,124 @@ class ArticleController extends Controller
                 $_SESSION['cart'][0] = $item;
             }
             $title = 'Liste des articles du panier';
-            return view('listerPanier', compact('unArticle','title'));
+            return view('listerPanier', compact('title'));
         } catch (MonException $e) {
             $erreur = $e->getMessage();
             return view('Error', compact('erreur'));
         } catch (Exception $ex) {
             $erreur = $ex->getMessage();
             return view('Error', compact('erreur'));
+        }
+    }
+
+    public function addQte($NUMART){
+        try{
+            for($i = 0; $i < count($_SESSION['cart']);$i++) {
+                if($_SESSION['cart'][$i]['id'] == $NUMART)
+                    $_SESSION['cart'][$i]['qte'] += 1;
+            }
+            $title = 'Liste des articles du panier';
+            $success = 'Quantité ajouter avec succès';
+            return view('listerPanier', compact('title','success'));
+        } catch (MonException $e) {
+            $erreur = $e->getMessage();
+            return view('Error', compact('erreur'));
+        } catch (Exception $ex) {
+            $erreur = $ex->getMessage();
+            return view('Error', compact('erreur'));
+        }
+    }
+    public function deleteQte($NUMART){
+        try{
+            for($i = 0; $i < count($_SESSION['cart']);$i++) {
+                if($_SESSION['cart'][$i]['id'] == $NUMART){
+                    if($_SESSION['cart'][$i]['qte'] == 1){
+                        unset($_SESSION['cart'][$i]);
+                        $_SESSION['cart'] = array_values($_SESSION['cart']);
+                        $success = 'Article supprimé avec succès';
+                    }
+                    else{
+                        $_SESSION['cart'][$i]['qte'] -= 1;
+                        $success = 'Quantité supprimé avec succès';
+                    }
+                }
+            }
+            $title = 'Liste des articles du panier';
+            return view('listerPanier', compact('title','success'));
+        } catch (MonException $e) {
+            $erreur = $e->getMessage();
+            return view('Error', compact('erreur'));
+        } catch (Exception $ex) {
+            $erreur = $ex->getMessage();
+            return view('Error', compact('erreur'));
+        }
+    }
+
+    public function supprimeArticle($NUMART) {
+        $unArticle = new Article();
+        try {
+            $unArticle->deleteArticle($NUMART);
+        } catch (Exception $ex) {
+            Session::put('erreur', $ex->getMessage());
+        } finally {
+            return redirect('/listerArticle');
+        }
+    }
+
+    public function updateArticle($NUMART) {
+        try {
+            $erreur = "";
+            $unArticle = new Article();
+            $unArticle = $unArticle->getByNumart($NUMART);
+            $titreVue = "Modification d'un article";
+            return view('formArticle', compact('unArticle', 'titreVue', 'erreur'));
+        } catch (MonException $e) {
+            $monErreur = $e->getMessage();
+            return view('error', compact('monErreur'));
+        } catch (Exception $e) {
+            $monErreur = $e->getMessage();
+            return view('error', compact('monErreur'));
+        }
+    }
+
+    public function validateArticle() {
+        try {
+            $NUMART = Request::input('NUMART');
+            $DESCART = Request::input('DESCART');
+            $PRIXART = Request::input('PRIXART');
+            $PRIXLIVRAISON = Request::input('PRIXLIVRAISON');
+            $QTESTOCK = Request::input('QTESTOCK');
+
+            $unArticle = new Article();
+            if($NUMART > 0) {
+                $unArticle->updateArticle($NUMART, $DESCART, $PRIXART, $PRIXLIVRAISON, $QTESTOCK);
+            }
+            else {
+                $NUMART->get('id');
+                $unArticle->insertArticle($DESCART, $PRIXART, $PRIXLIVRAISON, $QTESTOCK, $NUMART);
+            }
+            return redirect('/listerArticle');
+        } catch(MonException $e) {
+            $monErreur = $e->getMessage();
+            return view('error', compact('monErreur'));
+        } catch(Exception $e) {
+            $monErreur = $e->getMessage();
+            return view('error', compact('monErreur'));
+        }
+    }
+
+    public function addArticle() {
+        try {
+            $erreur = "";
+            $unArticle = new Article();
+            $title = "Ajout d'un article";
+            return view('formArticle', compact('unArticle', 'title', 'erreur'));
+        } catch (MonException $e) {
+            $monErreur = $e->getMessage();
+            return view('error', compact('monErreur'));
+        } catch (Exception $e) {
+            $monErreur = $e->getMessage();
+            return view('error', compact('monErreur'));
         }
     }
 }
