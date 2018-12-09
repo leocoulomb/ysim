@@ -63,12 +63,29 @@ class Article extends Model
         }
     }
 
-    public function updateArticle($DESCART, $PRIXART, $PRIXLIVRAISON, $QTESTOCK) {
+    public function updateArticle($NUMART ,$NOMART,$DESCART, $PRIXART, $PRIXLIVRAISON, $QTESTOCK) {
         try {
             DB::table('ARTICLE')->where('NUMART', '=', $NUMART)
-                ->update(['DESCART' => $DESCART, 'PRIXART' => $PRIXART,'PRIXLIVRAISON' => $PRIXLIVRAISON,'QTESTOCK' => $QTESTOCK]);
+                ->update(['NOMART'=> $NOMART,'DESCART' => $DESCART, 'PRIXART' => $PRIXART,'PRIXLIVRAISON' => $PRIXLIVRAISON,'QTESTOCK' => $QTESTOCK]);
         } catch (QueryException $e) {
-            throw new MonException($e->getMessage(), 5);
+           $erreur =  $e->getMessage();
+        }
+    }
+    public function insertArticle($NOMART,$DESCART, $PRIXART, $PRIXLIVRAISON, $QTESTOCK){
+        try {
+            $lastId = DB::table('ARTICLE')
+                ->select('NUMART')
+                ->orderBy('NUMART','desc')
+                ->first();
+            $id = $lastId->NUMART + 1;
+            DB::table('ARTICLE')->insert(
+                [
+                    'NUMART'=>$id,
+                    'NOMART'=> $NOMART,'DESCART' => $DESCART, 'PRIXART' => $PRIXART,
+                    'PRIXLIVRAISON' => $PRIXLIVRAISON,'QTESTOCK' => $QTESTOCK]
+            );
+        } catch (QueryException $e) {
+            $e->getMessage();
         }
     }
 

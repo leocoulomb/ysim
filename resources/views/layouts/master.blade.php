@@ -1,22 +1,22 @@
 <!DOCTYPE html>
-    <html lang="fr">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="">
-        <meta name="author" content="lcoul-schev-vaube">
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="lcoul-schev-vaube">
 
-        <title>Ysim</title>
+    <title>Ysim</title>
 
-        <!-- Core CSS -->
-        {!! Html::style('assets/css/bootstrap.css') !!}
-        {!! Html::style('assets/css/bootstrap-theme.css') !!}
-        {!! Html::style('assets/css/bootstrap_flaty.min.css') !!}
-        {!! Html::style('assets/css/main.css') !!}
+    <!-- Core CSS -->
+    {!! Html::style('assets/css/bootstrap.css') !!}
+    {!! Html::style('assets/css/bootstrap-theme.css') !!}
+    {!! Html::style('assets/css/bootstrap_flaty.min.css') !!}
+    {!! Html::style('assets/css/main.css') !!}
 
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-        @yield('css')
-    </head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    @yield('css')
+</head>
 
 <body>
 
@@ -29,7 +29,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a class="nav-link menu-proj" href="{{url('/')}}"><i class="fas fa-home"></i>&nbsp;&nbsp;Accueil
                         <span class="sr-only">(current)</span>
                     </a>
@@ -37,18 +37,27 @@
                 <li class="nav-item">
                     <a class="nav-link menu-proj" href="{{url('/listerArticle')}}"><i class="fas fa-shopping-cart"></i>&nbsp;&nbsp;Articles</a>
                 </li>
+                @if (Session::get('id') > 0)
+                    @if(Session::get('rolecli') > 0)
+                <li class="nav-item">
+                    <a class="nav-link menu-proj" href="{{url('/ajouterArticle')}}"><i class="far fa-plus-square"></i>&nbsp;&nbsp;Ajouter un article</a>
+                </li>
+                    @endif
                 <li class="nav-item">
                     <a class="nav-link menu-proj" href="{{url('/listerPanier')}}"><i class="fas fa-shopping-basket"></i>&nbsp;&nbsp;Panier</a>
                 </li>
+                @endif
                 @if (Session::get('id') == 0)
-                <li class="nav-item">
-                    <a class="nav-link menu-proj" href="{{url('/getLogin')}}"><i class="fas fa-sign-in-alt"></i>&nbsp;&nbsp;Connexion</a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link menu-proj" href="{{url('/getLogin')}}"><i class="fas fa-sign-in-alt"></i>&nbsp;&nbsp;Connexion</a>
+                    </li>
                 @endif
                 @if (Session::get('id') > 0)
+                    @if(Session::get('rolecli') == 0)
                     <li class="nav-item">
                         <a class="nav-link menu-proj" href="{{url('/monCompte')}}"><i class="fas fa-user-alt"></i>&nbsp;&nbsp;Mon compte</a>
                     </li>
+                    @endif
                     <li class="nav-item">
                         <a class="nav-link menu-proj" href="{{url('/histoCmd')}}"><i class="far fa-newspaper"></i>&nbsp;&nbsp;Historiques des commandes</a>
                     </li>
@@ -61,7 +70,7 @@
     </div>
 </nav>
 <div class="container">
-@yield('content')
+    @yield('content')
     @if (Session::get('id') > 0)
         <hr>
         <div class="row username">

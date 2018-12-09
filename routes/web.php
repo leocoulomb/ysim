@@ -64,4 +64,4 @@ Route::get('/ajouterArticle/', 'ArticleController@addArticle');
 Route::get('/modifierArticle/{NUMART}', 'ArticleController@updateArticle');
 
 //Enregistrer une modification d'un article
-Route::post('/validerArticle', 'FraisController@validateArticle');
+Route::post('/validateArticle', 'ArticleController@validateArticle');

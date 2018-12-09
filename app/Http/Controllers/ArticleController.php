@@ -9,8 +9,9 @@
 namespace App\Http\Controllers;
 session_start();
 use App\metier\Article;
-use App\metier\Panier;
 use Exception;
+use Request;
+use App\metier\ArticleAndCat;
 use App\metier\MonException;
 use Illuminate\Support\Facades\Session;
 
@@ -148,8 +149,8 @@ class ArticleController extends Controller
             $erreur = "";
             $unArticle = new Article();
             $unArticle = $unArticle->getByNumart($NUMART);
-            $titreVue = "Modification d'un article";
-            return view('formArticle', compact('unArticle', 'titreVue', 'erreur'));
+            $title = "Modification d'un article";
+            return view('formArticle', compact('unArticle', 'title', 'erreur'));
         } catch (MonException $e) {
             $monErreur = $e->getMessage();
             return view('error', compact('monErreur'));
@@ -162,6 +163,7 @@ class ArticleController extends Controller
     public function validateArticle() {
         try {
             $NUMART = Request::input('NUMART');
+            $NOMART = Request::input('NOMART');
             $DESCART = Request::input('DESCART');
             $PRIXART = Request::input('PRIXART');
             $PRIXLIVRAISON = Request::input('PRIXLIVRAISON');
@@ -169,19 +171,21 @@ class ArticleController extends Controller
 
             $unArticle = new Article();
             if($NUMART > 0) {
-                $unArticle->updateArticle($NUMART, $DESCART, $PRIXART, $PRIXLIVRAISON, $QTESTOCK);
+                $unArticle->updateArticle($NUMART, $NOMART, $DESCART, $PRIXART, $PRIXLIVRAISON, $QTESTOCK);
             }
             else {
-                $NUMART->get('id');
-                $unArticle->insertArticle($DESCART, $PRIXART, $PRIXLIVRAISON, $QTESTOCK, $NUMART);
+                $unArticle->insertArticle($NOMART,$DESCART, $PRIXART, $PRIXLIVRAISON, $QTESTOCK);
             }
-            return redirect('/listerArticle');
+            $mesArticlesAndCat = new ArticleAndCat();
+            $mesArticlesAndCat = $mesArticlesAndCat->getAllArticleAndCat();
+            $title = 'Liste de tous les articles';
+            return view('listerArticle',compact('title','mesArticlesAndCat'));
         } catch(MonException $e) {
-            $monErreur = $e->getMessage();
-            return view('error', compact('monErreur'));
+            $erreur = $e->getMessage();
+            return view('error', compact('erreur'));
         } catch(Exception $e) {
-            $monErreur = $e->getMessage();
-            return view('error', compact('monErreur'));
+            $erreur = $e->getMessage();
+            return view('error', compact('erreur'));
         }
     }
 
